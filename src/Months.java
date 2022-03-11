@@ -15,6 +15,8 @@
  * setDays (with the help of setLeapYear) prevents any month besides February 
  * from having its number of days changed at all, 
  * and prevents February from being set to a number other than 28 or 29. 
+ * 
+ * Includes month numbers to help with manipulation in Date class
  
  * -------------------------------------------------------------
  * notes/ train of thought
@@ -29,21 +31,23 @@
  * setLeapYear method is kinda ugly- maybe a wrapper class for boolean would 
  * solve? some way to designate null?- using Wrapper works,
  *  but maybe not much nicer than if statement checking for February
+ * 
+ * adding month numbers instead of messing with month numbers and ordinal!
  */
 // citation: unit 10, slide 13
 public enum Months {
-    JANUARY(31), 
-    FEBRUARY(28, false), 
-    MARCH(31), 
-    APRIL(30), 
-    MAY(31), 
-    JUNE(30), 
-    JULY(31), 
-    AUGUST(31), 
-    SEPTEMBER(30), 
-    OCTOBER(31),
-    NOVEMBER(30), 
-    DECEMBER(31);
+    JANUARY(1, 31), 
+    FEBRUARY(2, 28, false), 
+    MARCH(3, 31), 
+    APRIL(4, 30), 
+    MAY(5, 31), 
+    JUNE(6, 30), 
+    JULY(7, 31), 
+    AUGUST(8, 31), 
+    SEPTEMBER(9, 30), 
+    OCTOBER(10, 31),
+    NOVEMBER(11, 30), 
+    DECEMBER(12, 31);
     // number associated with month
     private int num;
     // number of days in the month
@@ -51,15 +55,21 @@ public enum Months {
     // leap year flag for February
     private Boolean isLeap;
     // general constructor
-    Months(int days)
+    Months(int num, int days)
     {
+        this.num = num;
         this.days = days;
     }
     // February constructor
-    Months(int days, Boolean isLeap)
+    Months(int num, int days, Boolean isLeap)
     {
-        this.isLeap = isLeap;
+        this.num = num;
         this.days = days;
+        this.isLeap = isLeap;
+    }
+    public int getNum()
+    {
+        return this.num;
     }
     public int getDays()
     {
