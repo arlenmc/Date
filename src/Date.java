@@ -43,7 +43,6 @@ public class Date {
     // advance date by one day
     public void advance()
     {
-        int monthPosition;
         // new year
         if ((this.day == 31) && (this.month.equals(Months.DECEMBER)))
         {
@@ -55,9 +54,7 @@ public class Date {
         else if (this.day == this.month.getDays())
         {
             this.day = 1;
-            monthPosition = this.month.ordinal();
-            monthPosition++;
-            this.month
+            
         }
         else
         {
