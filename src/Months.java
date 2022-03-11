@@ -20,19 +20,7 @@
  
  * -------------------------------------------------------------
  * notes/ train of thought
- * can't figure out how best to incorporate February
- * except to do boolean instead of integer- 
- * MESSY: true= 30/28 for feb, false= 31/29 for feb
- * 
- * # days is dependent on year for feb.. do we bring year into the enum??
- * set (leap)year method?
- * feb gets its own constructor! with an additional parameter- this seems ok
- * 
- * setLeapYear method is kinda ugly- maybe a wrapper class for boolean would 
- * solve? some way to designate null?- using Wrapper works,
- *  but maybe not much nicer than if statement checking for February
- * 
- * adding month numbers instead of messing with month numbers and ordinal!
+ *
  */
 // citation: unit 10, slide 13
 public enum Months {
