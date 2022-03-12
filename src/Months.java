@@ -1,4 +1,5 @@
 
+import java.util.Arrays;
 /**
  *
  * @author Macie McKitrick
@@ -16,10 +17,16 @@
  * from having its number of days changed at all, 
  * and prevents February from being set to a number other than 28 or 29. 
  * 
- * Includes month numbers to help with manipulation in Date class
+ * Month numbers help with Date class methods and meaningfully group data
  
  * -------------------------------------------------------------
  * notes/ train of thought
+ * incrementing the month enum could get its own enum method??
+ * PRIVATE FINAL (STATIC) QUALIFIERS IN ENUM?? FINAL COULD BE GOOD FOR NOT ALTERING
+ * MONTH DAYS FOR NON FEB MONTHS
+ * 
+ * thought: just leave out the leap year stuff entirely and make separate days
+ * variable for feb and the rest of the months. keep set days method
  *
  */
 // citation: unit 10, slide 13
@@ -42,6 +49,8 @@ public enum Months {
     private int days;
     // leap year flag for February
     private Boolean isLeap;
+    // reference: Savitch p. 396
+    private static final Months[] monthsArray = Months.values();
     // general constructor
     Months(int num, int days)
     {
@@ -74,6 +83,21 @@ public enum Months {
     private void setLeapYear()
     {
         this.isLeap = true;
+    }
+    // "reverse" .ordinal() using the month number
+    // reference: Savitch p. 396 - use of values method and for-each loop
+    private Months numToMonth(int number)
+    {
+        for(Months m : monthsArray)
+        {
+            if (m.num == number) return m;
+        }
+        return null;
+    }
+    // 
+    public Months (int num)
+    {
+        
     }
     // override to print month names with first letter capitalized
     public String toString()

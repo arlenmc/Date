@@ -9,6 +9,7 @@
 public class DateDriver {
     public static void main(String[] args) 
     {
+        /*
         // test Months enum..
         String printOctober = Months.OCTOBER.toString();
         System.out.println("toString case override: " + printOctober);
@@ -31,17 +32,7 @@ public class DateDriver {
         daysInMay = Months.MAY.getDays();
         System.out.println("Days in May after setLeapYear: " + daysInMay);
         System.out.println("");
-        /* 
-        (before fix) results in "Days in May: 29"
-        not good, you shouldn't be able to change it
-        doesn't seem to matter which constructor is used
-           
-        solution: 
-        use if statement gate in setLeapYear method 
-        OR use Boolean wrapper and check for null (currently doing this)
-        you can use setLeapYear on months other than February- it just won't do anything
-        not sure if better way/if this makes having 2 constructors redundant
-        */
+        
         // setLeapYear with February
         int daysInFeb = Months.FEBRUARY.getDays();
         System.out.println("Days in " + Months.FEBRUARY + 
@@ -104,7 +95,8 @@ public class DateDriver {
         // test invalid feb date- it will still print- isValid will cover this
         Date day4 = new Date(30, month, year);
         System.out.println(day4);
-        
+        */ 
+        //limit printing
         
     } // end of main method
 } // end of driver class

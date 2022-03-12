@@ -8,11 +8,7 @@
  * Help from: Ben Alfaro (suggestion to use constructor chaining)
  * 
  * notes:
- * PREVENT CREATING DATE THAT DOES NOT EXIST- this is handled by isValid method
- * use enum to manage month name, order, and days in month
  * 
- * how to incorporate enum into class? I call it? the field must be Months type?
- *  - just declaring it as though it's in the class seems to work?
  */
 public class Date {
     private int day;
@@ -44,7 +40,7 @@ public class Date {
     public void advance()
     {
         // new year
-        if ((this.day == 31) && (this.month.equals(Months.DECEMBER)))
+        if ((this.day == 31) && (this.month == Months.DECEMBER))
         {
             this.day = 1;
             this.month = Months.JANUARY;
@@ -54,6 +50,10 @@ public class Date {
         else if (this.day == this.month.getDays())
         {
             this.day = 1;
+            // "increment" the month enum
+            int monthNum = this.month.getNum();
+            monthNum++;
+            this.month.findName(monthNum);
             
         }
         else
