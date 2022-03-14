@@ -248,6 +248,17 @@ public class DateDriver {
         System.out.println("");
         */
         // checkpoint #3
+        // test Date countDays()
+        Date counting1 = new Date(31, Months.JANUARY, 1);
+        System.out.println("1 "+ counting1.countDays());
+        Date counting2 = new Date(1, Months.DECEMBER, 0);
+        System.out.println("2 "+ counting2.countDays());
+        Date counting3 = new Date(1, Months.JANUARY, 2);
+        System.out.println("3 "+ counting3.countDays());
+        //SHOULD NOT be same # of days as January??
+        // causes infinite loop in the methods for loop
+        Date counting4 = new Date(1, Months.MAY, 1);
+        System.out.println(counting4.countDays());
         
     } // end of main method
 } // end of driver class
