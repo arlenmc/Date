@@ -77,9 +77,30 @@ public class Date {
         if (this.year == 0) return false;
         return true;
     }
+    // calculate # of days between given date and fictitious date January 1, 0000
+    // this only calcs with year, so it doesn't include month and days besides 1/1
+    // separate method to find in between days?
+    // counts end date (366 not 365)
     public int countDays()
     {
+        int totalDays;
+        double dYear = this.year-1;
+        int monthNum = this.month.getNum();
+        // calculate days from 1/1/0000 to 1/1/year-1
+        int leapDays = (int) Math.ceil(dYear/4);
+        int centuries = (int) Math.ceil(dYear/100);
+        int leapCenturies = (int) Math.ceil(dYear/400);
+        totalDays = ((this.year-1) * (365 + leapDays - centuries + leapCenturies));
         
+        // add days from date's month, up to given day
+        for (Months m = Months.JANUARY; m.getNum() < monthNum; m = m.increment())
+        {
+            totalDays += m.getDays();
+            System.out.println("w");
+        }
+        
+        totalDays += this.day;
+        return totalDays;
     }
     public boolean isLeapYear()
     {
