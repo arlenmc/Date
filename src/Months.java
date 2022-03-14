@@ -8,12 +8,11 @@ import java.util.Arrays;
  * Description: 
  * Enum of months in a year that manages the number of days in each month.
  * 
- * February is set to 28 days by default, but setDays changes it to 29.
- * However, setDays does not check what the year is
- * it's assumed that setDays is called when the year is known to be a leap year
+ * February is set to 28 days by default, but setFeb changes it to 29.
+ * it's assumed that setFeb is called when the year is known to be a leap year
  * (ie. the Date class has determined that given date is a leap year)
  * 
- * setDays (with the help of setLeapYear) prevents any month besides February 
+ * setFeb (with the help of setLeapYear) prevents any month besides February 
  * from having its number of days changed at all, 
  * and prevents February from being set to a number other than 28 or 29. 
  * 
@@ -27,6 +26,13 @@ import java.util.Arrays;
  * 
  * thought: just leave out the leap year stuff entirely and make separate days
  * variable for feb and the rest of the months. keep set days method
+ * -NONONO other using final var does NOT work because constructors idk
+ * we're keeping it the same!
+ * 
+ * static var (Months[]) is accessed by every month constant.. there's only 
+ * one array, as opposed to a month # for every month
+ * 
+ * -- write method to change user string
  *
  */
 // citation: unit 10, slide 13
@@ -44,7 +50,7 @@ public enum Months {
     NOVEMBER(11, 30), 
     DECEMBER(12, 31);
     // number associated with month
-    private int num;
+    private final int num;
     // number of days in the month
     private int days;
     // leap year flag for February
@@ -72,7 +78,7 @@ public enum Months {
     {
         return this.days;
     }
-    public void setDays()
+    public void setFeb()
     {
         if (!(this.isLeap == null))
         {
@@ -86,7 +92,7 @@ public enum Months {
     }
     // "reverse" .ordinal() using the month number
     // reference: Savitch p. 396 - use of values method and for-each loop
-    private Months numToMonth(int number)
+    public static Months numToMonth(int number)
     {
         for(Months m : monthsArray)
         {
@@ -94,10 +100,18 @@ public enum Months {
         }
         return null;
     }
-    // 
-    public Months (int num)
+    // "increment" month constant- return next consecutive constant
+    public Months increment ()
     {
-        
+        if (!(Months.this == Months.DECEMBER))
+        {
+            int nextNum = Months.this.ordinal() + 2;
+            return (Months.this.numToMonth(nextNum));
+        }
+        else
+        {
+            return Months.JANUARY;
+        }
     }
     // override to print month names with first letter capitalized
     public String toString()
