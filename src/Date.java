@@ -34,7 +34,7 @@ public class Date {
         this.year = year;
         this.leapYear = (this.year % 4 == 0);
         // adjust February to 29 days if leap year
-        if (this.leapYear) this.month.setDays();
+        if (this.leapYear) this.month.setFeb();
     }
     // advance date by one day
     public void advance()
@@ -50,11 +50,7 @@ public class Date {
         else if (this.day == this.month.getDays())
         {
             this.day = 1;
-            // "increment" the month enum
-            int monthNum = this.month.getNum();
-            monthNum++;
-            this.month.findName(monthNum);
-            
+            this.month = this.month.increment();
         }
         else
         {
