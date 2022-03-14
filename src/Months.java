@@ -20,19 +20,7 @@ import java.util.Arrays;
  
  * -------------------------------------------------------------
  * notes/ train of thought
- * incrementing the month enum could get its own enum method??
- * PRIVATE FINAL (STATIC) QUALIFIERS IN ENUM?? FINAL COULD BE GOOD FOR NOT ALTERING
- * MONTH DAYS FOR NON FEB MONTHS
- * 
- * thought: just leave out the leap year stuff entirely and make separate days
- * variable for feb and the rest of the months. keep set days method
- * -NONONO other using final var does NOT work because constructors idk
- * we're keeping it the same!
- * 
- * static var (Months[]) is accessed by every month constant.. there's only 
- * one array, as opposed to a month # for every month
- * 
- * -- write method to change user string
+ *  -- write method to change user string
  *
  */
 // citation: unit 10, slide 13

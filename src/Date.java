@@ -8,7 +8,8 @@
  * Help from: Ben Alfaro (suggestion to use constructor chaining)
  * 
  * notes:
- * 
+ * -isValid() had only been checking final date of month.. used less than =
+ * -no year 0 for isValid()(?)
  */
 public class Date {
     private int day;
@@ -32,8 +33,8 @@ public class Date {
         this.day = day;
         this.month = month;
         this.year = year;
-        this.leapYear = (this.year % 4 == 0);
-        // adjust February to 29 days if leap year
+        this.leapYear = this.isLeapYear();
+        // adjust February in Months to 29 days if leap year
         if (this.leapYear) this.month.setFeb();
     }
     // advance date by one day
@@ -57,12 +58,47 @@ public class Date {
                 this.day++;
         }
     }
-    public String toString()
+    public boolean equals(Date date)
     {
-        return month + " " + day + ", " + year;
+        if((this.day == date.day) && (this.month == date.month) 
+                && (this.year == date.year))
+        {
+            return true;
+        }
+        return false;
+    }
+    public boolean isValid()
+    {
+        // month guaranteed valid due to Months enum
+        // leap year day within month
+        if (!(leapYear) && this.month == Months.FEBRUARY) return false;
+        // day within month
+        if (!(this.day <= this.month.getDays() && (this.day > 0))) return false;
+        if (this.year == 0) return false;
+        return true;
+    }
+    public int countDays()
+    {
+        
     }
     public boolean isLeapYear()
     {
-        return this.leapYear;
+        if (this.year % 4 == 0)
+        {
+            // non-century leap year
+            if (!(this.year % 100 == 0)) return true;   
+            else if (this.year % 100 == 0)    
+            {
+                // century  leap year 
+                if (this.year % 400 == 0) return true;
+                else
+                    return false;
+            }
+        }
+        return false;
+    }
+    public String toString()
+    {
+        return month + " " + day + ", " + year;
     }
 }
