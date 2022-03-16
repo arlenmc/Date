@@ -248,17 +248,102 @@ public class DateDriver {
         System.out.println("");
         */
         // checkpoint #3
-        // test Date countDays()
-        Date counting1 = new Date(31, Months.JANUARY, 1);
-        System.out.println("1 "+ counting1.countDays());
-        Date counting2 = new Date(1, Months.DECEMBER, 0);
-        System.out.println("2 "+ counting2.countDays());
+        // test Date countDays()- 0 day issue
+        // (only days prior to current year/ total days)
+        Date counting0 = new Date(0, Months.JANUARY, 1);
+        System.out.println("0 JAN YEAR 1 (0/1): "+ counting0.countDays());
+        System.out.println("false: " + counting0.isValid()); 
+        System.out.println("false: " + counting0.isLeapYear());
+        
+        System.out.println("");
+        Date counting1 = new Date(1, Months.JANUARY, 1);
+        System.out.println("1 JAN YEAR 1 (0/1): "+ counting1.countDays());
+        System.out.println("true: " + counting1.isValid()); 
+        System.out.println("false: " + counting1.isLeapYear());
+        
+        System.out.println("");
+        Date counting2 = new Date(31, Months.DECEMBER, 1);
+        System.out.println("31 DEC YEAR 1 (0/365): "+ counting2.countDays());
+        System.out.println("true: " + counting2.isValid()); 
+        System.out.println("false: " + counting2.isLeapYear());
+        
+        System.out.println("");
+        Date countingX = new Date(0, Months.JANUARY, 2);
+        System.out.println("0 JAN YEAR 2 (365/366): "+ countingX.countDays());
+        System.out.println("false: " + countingX.isValid()); 
+        System.out.println("false: " + countingX.isLeapYear());
+        
+        System.out.println("");
         Date counting3 = new Date(1, Months.JANUARY, 2);
-        System.out.println("3 "+ counting3.countDays());
-        //SHOULD NOT be same # of days as January??
-        // causes infinite loop in the methods for loop
-        Date counting4 = new Date(1, Months.MAY, 1);
-        System.out.println(counting4.countDays());
+        System.out.println("1 JAN YEAR 2 (365/366): "+ counting3.countDays());
+        System.out.println("true: " + counting3.isValid()); 
+        System.out.println("false: " + counting3.isLeapYear());
+        
+        System.out.println("");
+        Date countingXa = new Date(1, Months.FEBRUARY, 2);
+        System.out.println("1 FEB YEAR 2 (365/397): "+ countingXa.countDays());
+        System.out.println("true: " + countingXa.isValid()); 
+        System.out.println("false: " + countingXa.isLeapYear());
+        
+        System.out.println("");
+        Date countingXd = new Date(0, Months.FEBRUARY, 2);
+        System.out.println("0 FEB YEAR 2 (365/397): "+ countingXd.countDays());
+        System.out.println("false: " + countingXd.isValid()); 
+        System.out.println("false: " + countingXd.isLeapYear());
+        
+        System.out.println("");
+        Date countingXe = new Date(0, Months.JANUARY, 3);
+        System.out.println("0 JAN YEAR 3 (730/731): "+ countingXe.countDays());
+        System.out.println("false: " + countingXe.isValid()); 
+        System.out.println("false: " + countingXe.isLeapYear());
+        
+        System.out.println("");
+        Date countingXb = new Date(1, Months.JANUARY, 3);
+        System.out.println("1 JAN YEAR 3 (730/731): "+ countingXb.countDays());
+        System.out.println("true: " + countingXb.isValid()); 
+        System.out.println("false: " + countingXb.isLeapYear());
+        
+        System.out.println("");
+        Date countingXc = new Date(1, Months.JANUARY, 4);
+        System.out.println("1 JAN YEAR 4 (1095/1096): "+ countingXc.countDays());
+        System.out.println("true: " + countingXc.isValid()); 
+        System.out.println("true: " + countingXc.isLeapYear());
+        
+        System.out.println("");
+        Date testing1 = new Date(1, Months.JANUARY, 1600);
+        System.out.println("1 JAN YEAR 1600: "+ testing1.countDays());
+        System.out.println("true: " + testing1.isValid()); 
+        System.out.println("true: " + testing1.isLeapYear());
+        
+        System.out.println("");
+        Date testing2 = new Date(1, Months.JANUARY, 1601);
+        System.out.println("1 JAN YEAR 1601: "+ testing2.countDays());
+        System.out.println("true: " + testing2.isValid()); 
+        System.out.println("false: " + testing2.isLeapYear());
+        
+        System.out.println("");
+        Date testing3 = new Date(1, Months.JANUARY, 2006);
+        System.out.println("1 JAN YEAR 2006: "+ testing3.countDays());
+        System.out.println("true: " + testing3.isValid()); 
+        System.out.println("false: " + testing3.isLeapYear());
+        
+        System.out.println("");
+        Date testing4 = new Date(2, Months.JANUARY, 2006);
+        System.out.println("2 JAN YEAR 2006: "+ testing4.countDays());
+        System.out.println("true: " + testing4.isValid()); 
+        System.out.println("false: " + testing4.isLeapYear());
+        
+        System.out.println("");
+        Date testing5 = new Date(2, Months.JANUARY, 1600);
+        System.out.println("2 JAN YEAR 1600: "+ testing5.countDays());
+        System.out.println("true: " + testing5.isValid()); 
+        System.out.println("false: " + testing5.isLeapYear());
+        
+        System.out.println("");
+        Date testing6 = new Date(2, Months.JANUARY, 1601);
+        System.out.println("2 JAN YEAR 1601: "+ testing6.countDays());
+        System.out.println("true: " + testing6.isValid()); 
+        System.out.println("false: " + testing6.isLeapYear());
         
     } // end of main method
 } // end of driver class

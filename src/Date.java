@@ -10,6 +10,10 @@
  * notes:
  * -isValid() had only been checking final date of month.. used less than =
  * -no year 0 for isValid()(?)
+ * 
+ * -just make countDays from 1/1/0 to 1/1/x because that date is useful for
+ * finding day of week
+ * -separate method for finding count up to date because that's useful for comparison
  */
 public class Date {
     private int day;
@@ -71,35 +75,31 @@ public class Date {
     {
         // month guaranteed valid due to Months enum
         // leap year day within month
-        if (!(leapYear) && this.month == Months.FEBRUARY) return false;
+        if (!(leapYear) && this.month == Months.FEBRUARY 
+                && this.day == 29) return false;
         // day within month
-        if (!(this.day <= this.month.getDays() && (this.day > 0))) return false;
+        if (!((this.day <= this.month.getDays()) && (this.day > 0))) return false;
         if (this.year == 0) return false;
         return true;
     }
     // calculate # of days between given date and fictitious date January 1, 0000
-    // this only calcs with year, so it doesn't include month and days besides 1/1
-    // separate method to find in between days?
-    // counts end date (366 not 365)
     public int countDays()
     {
         int totalDays;
-        double dYear = this.year-1;
+        double dYear = this.year;
         int monthNum = this.month.getNum();
-        // calculate days from 1/1/0000 to 1/1/year-1
         int leapDays = (int) Math.ceil(dYear/4);
         int centuries = (int) Math.ceil(dYear/100);
         int leapCenturies = (int) Math.ceil(dYear/400);
-        totalDays = ((this.year-1) * (365 + leapDays - centuries + leapCenturies));
-        
-        // add days from date's month, up to given day
+        // calculate days from 1/1/0000 to 1/1/year-1
+        totalDays = this.year * 365 + leapDays - centuries + leapCenturies;
+        // add days after Jan 1 thru given day
         for (Months m = Months.JANUARY; m.getNum() < monthNum; m = m.increment())
         {
             totalDays += m.getDays();
-            System.out.println("w");
+            System.out.println(totalDays);
         }
-        
-        totalDays += this.day;
+        totalDays += (this.day - 1);
         return totalDays;
     }
     public boolean isLeapYear()
