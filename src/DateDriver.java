@@ -1,12 +1,9 @@
 
-import java.time.Month;
-
-
 /**
  *
  * @author Macie McKitrick
  * Program Assignment #3: Dates
- * 3/8/22
+ * 3/16/22
  * Description: test Date class constructors and methods
  */
 public class DateDriver {
@@ -337,7 +334,7 @@ public class DateDriver {
         Date testing5 = new Date(2, Months.JANUARY, 1600);
         System.out.println("2 JAN YEAR 1600: "+ testing5.countDays());
         System.out.println("true: " + testing5.isValid()); 
-        System.out.println("false: " + testing5.isLeapYear());
+        System.out.println("true: " + testing5.isLeapYear());
         
         System.out.println("");
         Date testing6 = new Date(2, Months.JANUARY, 1601);
@@ -345,5 +342,39 @@ public class DateDriver {
         System.out.println("true: " + testing6.isValid()); 
         System.out.println("false: " + testing6.isLeapYear());
         
+        System.out.println("tuesday: " + testing6.dayOfWeek());
+        System.out.println("sunday: " + testing3.dayOfWeek());
+        
+        System.out.println("");
+        System.out.println("TEST DAY OF WEEK");
+        // why is this resulting in sunday- it's a century leap year
+        Date testing7 = new Date(15, Months.MAY, 1600);
+        System.out.println("monday: " + testing7.dayOfWeek());
+        Date testing8 = new Date(29, Months.FEBRUARY, 1600);
+        System.out.println("tuesday: " + testing8.dayOfWeek());
+        Date testing9 = new Date(30, Months.FEBRUARY, 1600);
+        // no error so don't worry
+        /*
+        System.out.println("invalid: " + testing9.dayOfWeek());
+        Date testing10 = new Date(29, Months.FEBRUARY, 1601);
+        System.out.println("invalid: " + testing10.dayOfWeek());
+        */
+        Date testing11 = new Date(15, Months.MAY, 2000);
+        //this one is correct.. but also a century leap year
+        System.out.println("(may)monday: " + testing11.dayOfWeek());
+        
+        // this is ahead by one day also
+        Date testing12 = new Date(25, Months.MAY, 2001);
+        System.out.println("(may)friday: " + testing12.dayOfWeek());
+        
+        // test compareTo()
+        System.out.println("");
+        System.out.println("object is later than date- +: " +
+                testing12.compareTo(testing11));
+        System.out.println("object is earlier than date- -: " +
+                testing11.compareTo(testing12));
+        System.out.println("object is same as date- 0: " +
+                testing12.compareTo(testing12));
     } // end of main method
+    
 } // end of driver class

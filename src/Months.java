@@ -4,26 +4,15 @@ import java.util.Arrays;
  *
  * @author Macie McKitrick
  * Program Assignment #3: Dates
- * 3/8/22
+ * 3/16/22
  * Description: 
  * Enum of months in a year that manages the number of days in each month.
  * 
  * February is set to 28 days by default, but setFeb changes it to 29.
  * it's assumed that setFeb is called when the year is known to be a leap year
  * (ie. the Date class has determined that given date is a leap year)
- * 
- * setFeb (with the help of setLeapYear) prevents any month besides February 
- * from having its number of days changed at all, 
- * and prevents February from being set to a number other than 28 or 29. 
- * 
- * Month numbers help with Date class methods and meaningfully group data
- 
- * -------------------------------------------------------------
- * notes/ train of thought
- *  -- write method to change user string
- *
  */
-// citation: unit 10, slide 13
+// reference: unit 10, slide 13
 public enum Months {
     JANUARY(1, 31), 
     FEBRUARY(2, 28, false), 

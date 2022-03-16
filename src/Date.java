@@ -3,23 +3,21 @@
  *
  * @author Macie McKitrick
  * Program Assignment #3: Dates
- * 3/8/22
+ * 3/16/22
  * Description: Represent a date including its month, day, and year
- * Help from: Ben Alfaro (suggestion to use constructor chaining)
- * 
- * notes:
- * -isValid() had only been checking final date of month.. used less than =
- * -no year 0 for isValid()(?)
- * 
- * -just make countDays from 1/1/0 to 1/1/x because that date is useful for
- * finding day of week
- * -separate method for finding count up to date because that's useful for comparison
+ * Help from: 
+ * - Ben Alfaro (suggestion to use constructor chaining),
+ * - website (+ general research about the Gregorian calendar and 
+ * perpetual calendars:  https://cs.uwaterloo.ca/~alopez-o/math-faq/node73.html
+ *  - used web for ideas and facts such as 'the calendar has a 400 year cycle
  */
 public class Date {
     private int day;
     private Months month;
     private int year;
     private boolean leapYear;
+    private static final String daysOfWeek[] = {"Saturday","Sunday","Monday",
+        "Tuesday","Wednesday","Thursday", "Friday"};
     Date()
     {
         this(1, Months.JANUARY, 2000);
@@ -71,6 +69,17 @@ public class Date {
         }
         return false;
     }
+    public int compareTo(Date date)
+    {
+        return this.countDays() - date.countDays();
+    }
+    public String dayOfWeek()
+    {
+        int totalDays = this.countDays();
+        int dayNum = totalDays % 7;
+        return daysOfWeek[dayNum];
+        
+    }
     public boolean isValid()
     {
         // month guaranteed valid due to Months enum
@@ -97,7 +106,6 @@ public class Date {
         for (Months m = Months.JANUARY; m.getNum() < monthNum; m = m.increment())
         {
             totalDays += m.getDays();
-            System.out.println(totalDays);
         }
         totalDays += (this.day - 1);
         return totalDays;
@@ -110,7 +118,7 @@ public class Date {
             if (!(this.year % 100 == 0)) return true;   
             else if (this.year % 100 == 0)    
             {
-                // century  leap year 
+                // century leap year 
                 if (this.year % 400 == 0) return true;
                 else
                     return false;
