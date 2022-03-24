@@ -247,6 +247,7 @@ public class DateDriver {
         // checkpoint #3
         // test Date countDays()- 0 day issue
         // (only days prior to current year/ total days)
+        
         Date counting0 = new Date(0, Months.JANUARY, 1);
         System.out.println("0 JAN YEAR 1 (0/1): "+ counting0.countDays());
         System.out.println("false: " + counting0.isValid()); 
@@ -345,27 +346,48 @@ public class DateDriver {
         System.out.println("tuesday: " + testing6.dayOfWeek());
         System.out.println("sunday: " + testing3.dayOfWeek());
         
+        //cut here and it's saturday
+        
         System.out.println("");
         System.out.println("TEST DAY OF WEEK");
+        
+        // cut here and it's saturday
+        
         // why is this resulting in sunday- it's a century leap year
         Date testing7 = new Date(15, Months.MAY, 1600);
         System.out.println("monday: " + testing7.dayOfWeek());
+        
+        // cut here and it's saturday
+        
         Date testing8 = new Date(29, Months.FEBRUARY, 1600);
         System.out.println("tuesday: " + testing8.dayOfWeek());
-        Date testing9 = new Date(30, Months.FEBRUARY, 1600);
-        // no error so don't worry
+        
+        // cut here and it's saturday
         /*
+        // this chunk somehow the problem?
+        //no?? if I only remove this it's not fixed
+        Date testing9 = new Date(30, Months.FEBRUARY, 1600);
         System.out.println("invalid: " + testing9.dayOfWeek());
+        */
+        //
+        
+        // cut here and it's friday!!!! (remove above chunk)
+        
         Date testing10 = new Date(29, Months.FEBRUARY, 1601);
         System.out.println("invalid: " + testing10.dayOfWeek());
-        */
+        
         Date testing11 = new Date(15, Months.MAY, 2000);
         //this one is correct.. but also a century leap year
         System.out.println("(may)monday: " + testing11.dayOfWeek());
         
-        // this is ahead by one day also
+        // this is ahead by one day also- ONLY WRONG HERE??
         Date testing12 = new Date(25, Months.MAY, 2001);
         System.out.println("(may)friday: " + testing12.dayOfWeek());
+        
+        // this is ahead by one day also- ONLY WRONG HERE??- EVEN IF COPIED
+        Date testing13 = new Date(25, Months.MAY, 2001);
+        System.out.println("(may)friday: " + testing13.dayOfWeek());
+        System.out.println(testing13.isLeapYear());
         
         // test compareTo()
         System.out.println("");
@@ -375,6 +397,10 @@ public class DateDriver {
                 testing11.compareTo(testing12));
         System.out.println("object is same as date- 0: " +
                 testing12.compareTo(testing12));
+        
+        
+        
+    
     } // end of main method
     
 } // end of driver class
