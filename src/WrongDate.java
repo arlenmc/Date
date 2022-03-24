@@ -36,6 +36,10 @@ public class WrongDate {
         // adjust February in Months to 29 days if leap year
         if (this.leapYear) this.month.setFeb();
     }
+    WrongDate(int day, int m, int year) 
+    { 
+        this(day, WrongMonths.values()[m-1], year); 
+    }
     // advance date by one day
     public void advance()
     {

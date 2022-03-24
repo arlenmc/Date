@@ -5,6 +5,11 @@ import java.util.Arrays;
  * @author Macie McKitrick
  * Program Assignment #3: Dates
  * 3/16/22
+ * 
+ * updated on 3/23/22
+ * -eliminated setLeapYear() and setFeb() methods
+ * -added setLeap() and undoLeap() methods
+ * 
  * Description: 
  * Enum of months in a year that manages the number of days in each month.
  * 

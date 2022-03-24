@@ -3,7 +3,10 @@
  *
  * @author Macie McKitrick
  * Program Assignment #3: Dates
- * 3/16/22- updated with fix on 3/23/22
+ * 3/16/22
+ * 
+ * updated on 3/23/22- lines 44,45,113
+ * 
  * Description: Represent a date including its month, day, and year
  * Help from: 
  * - Ben Alfaro (suggestion to use constructor chaining),
@@ -40,6 +43,10 @@ public class Date {
         // adjust February in Months to 29 days if leap year
         if (this.leapYear) this.month.setLeap();
         if (!this.leapYear) this.month.undoLeap();
+    }
+    Date(int day, int m, int year) 
+    { 
+        this(day, Months.values()[m-1], year); 
     }
     // advance date by one day
     public void advance()
