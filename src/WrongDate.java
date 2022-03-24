@@ -2,29 +2,32 @@
 /**
  *
  * @author Macie McKitrick
+ * Program Assignment #3: Dates
+ * 3/16/22
+ * Description:
  * the Date class that was originally turned in, which outputs some incorrect
  * values, due to the original Months enum methods 
  */
 public class WrongDate {
     private int day;
-    private Months month;
+    private WrongMonths month;
     private int year;
     private boolean leapYear;
     private static final String daysOfWeek[] = {"Saturday","Sunday","Monday",
         "Tuesday","Wednesday","Thursday", "Friday"};
     WrongDate()
     {
-        this(1, Months.JANUARY, 2000);
+        this(1, WrongMonths.JANUARY, 2000);
     }
     WrongDate(int day)
     {
-        this(day, Months.JANUARY, 2000);
+        this(day, WrongMonths.JANUARY, 2000);
     }
-    WrongDate(int day, Months month)
+    WrongDate(int day, WrongMonths month)
     {
         this(day, month, 2000);
     }
-    WrongDate(int day, Months month, int year)
+    WrongDate(int day, WrongMonths month, int year)
     {
         this.day = day;
         this.month = month;
@@ -37,10 +40,10 @@ public class WrongDate {
     public void advance()
     {
         // new year
-        if ((this.day == 31) && (this.month == Months.DECEMBER))
+        if ((this.day == 31) && (this.month == WrongMonths.DECEMBER))
         {
             this.day = 1;
-            this.month = Months.JANUARY;
+            this.month = WrongMonths.JANUARY;
             this.year++;
         }
         // new month
@@ -54,7 +57,7 @@ public class WrongDate {
                 this.day++;
         }
     }
-    public boolean equals(Date date)
+    public boolean equals(WrongDate date)
     {
         if((this.day == date.day) && (this.month == date.month) 
                 && (this.year == date.year))
@@ -63,7 +66,7 @@ public class WrongDate {
         }
         return false;
     }
-    public int compareTo(Date date)
+    public int compareTo(WrongDate date)
     {
         return this.countDays() - date.countDays();
     }
@@ -78,7 +81,7 @@ public class WrongDate {
     {
         // month guaranteed valid due to Months enum
         // leap year day within month
-        if (!(leapYear) && this.month == Months.FEBRUARY 
+        if (!(leapYear) && this.month == WrongMonths.FEBRUARY 
                 && this.day == 29) return false;
         // day within month
         if (!((this.day <= this.month.getDays()) && (this.day > 0))) return false;
@@ -97,7 +100,7 @@ public class WrongDate {
         // calculate days from 1/1/0000 to 1/1/year-1
         totalDays = this.year * 365 + leapDays - centuries + leapCenturies;
         // add days after Jan 1 thru given day
-        for (Months m = Months.JANUARY; m.getNum() < monthNum; m = m.increment())
+        for (WrongMonths m = WrongMonths.JANUARY; m.getNum() < monthNum; m = m.increment())
         {
             totalDays += m.getDays();
         }
